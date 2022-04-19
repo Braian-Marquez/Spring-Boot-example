@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a th:href="@{/}" class="navbar-brand">Home</a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menu"
+                    aria-aria-controls="menu"
+                    aria-expanded="false"
+                    aria-label="Show / Hide Menu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/users/form}">Create</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/users}">Users</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form th:action="@{/users/create}" th:object="${user}" method="post">
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username:</label><br>
+                        <input type="text" class="form-control" th:field="*{username}" id="username"
+                               placeholder="jhon2020" required autofocus>
+                        <div class="text-danger mt-b" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label><br>
+                        <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Jhon"
+                               required>
+                        <div class="text-danger mt-b" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Surname:</label><br>
+                        <input type="text" class="form-control" th:field="*{surname}" id="surname" placeholder="Carter"
+                               required>
+                        <div class="text-danger mt-b" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Sing up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
